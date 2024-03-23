@@ -48,7 +48,7 @@ const GroupChat = () => {
   }, [messages]);
 
   useEffect(() => {
-    socket.on("receive-message", (msg) => {
+    socket.on("receive-message", () => {
       fetchMessages();
     });
   }, [socket]);

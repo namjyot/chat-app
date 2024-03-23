@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
     socket.leave(roomId);
   });
   socket.on("send-message", (message, userId) => {
-    socket.broadcast.to(message.chat).emit("receive-message", message);
+    socket.broadcast.to(message.chat).emit("receive-message");
     userId.map((id) => {
       io.to(id).emit("fetch-data");
     });
