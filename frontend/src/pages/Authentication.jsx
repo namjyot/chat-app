@@ -21,10 +21,12 @@ const Authentication = () => {
         `${process.env.REACT_APP_SERVER_URL}/api/user/authUser`
       );
       if (res.data.success) {
-        navigate("/home");
+        setTimeout;
       }
     };
-    authUser();
+    setTimeout(() => {
+      authUser();
+    }, 1000);
   }, []);
 
   return (
