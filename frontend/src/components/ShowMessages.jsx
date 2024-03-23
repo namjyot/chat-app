@@ -63,28 +63,6 @@ const ShowMessages = () => {
             </Box>
           </Flex>
         ))}
-
-      {/* <Flex
-        w={"95%"}
-        bg={"gray.50"}
-        borderRadius={5}
-        px={2}
-        py={5}
-        mb={1}
-        mx={6}
-        alignItems={"center"}
-        onClick={() => {
-          openChatWindow();
-        }}
-      >
-        <Avatar size={"md"} ml={1} mr={4} />
-        <Box>
-          <Text fontWeight={600}>Example</Text>
-          <Text fontSize={"xs"} fontWeight={300}>
-            hey how are you
-          </Text>
-        </Box>
-      </Flex> */}
     </Flex>
   );
 };
