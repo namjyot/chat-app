@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   Button,
-  Divider,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -145,6 +144,7 @@ const FindUserDrawer = () => {
 
           <DrawerFooter>
             <Button
+              mb={6}
               variant="outline"
               colorScheme="messenger"
               onClick={onClose}

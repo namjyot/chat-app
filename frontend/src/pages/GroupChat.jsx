@@ -49,7 +49,7 @@ const GroupChat = () => {
 
   useEffect(() => {
     socket.on("receive-message", (msg) => {
-      setMessages((prevArr) => [...prevArr, msg]);
+      fetchMessages();
     });
   }, [socket]);
 
