@@ -13,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(cookies());
 const server = createServer(app);
+dotenv.config({ path: "./config.env" });
+
 app.use(
   cors({
     credentials: true,
@@ -25,7 +27,6 @@ const io = new Server(server, {
     origin: process.env.FRONTEND_URL,
   },
 });
-dotenv.config({ path: "./config.env" });
 connectToDB();
 
 cloudinary.config({
