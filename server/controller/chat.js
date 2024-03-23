@@ -90,7 +90,7 @@ export const sendMessage = async (req, res) => {
         message: `Something went wrong while sending message`,
       });
     } else {
-      const lastMessageUpdate = Chat.findByIdAndUpdate(chatId, {
+      const lastMessageUpdate = await Chat.findByIdAndUpdate(chatId, {
         lastMessage: message,
       });
 
@@ -116,7 +116,7 @@ export const sendGroupMessage = async (req, res) => {
         message: `Something went wrong while sending message`,
       });
     } else {
-      const lastMessageUpdate = Chat.findByIdAndUpdate(chatId, {
+      const lastMessageUpdate = await Chat.findByIdAndUpdate(chatId, {
         lastMessage: message,
       });
       const msg = await result.populate({
