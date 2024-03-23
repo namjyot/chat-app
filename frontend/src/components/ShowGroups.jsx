@@ -4,6 +4,7 @@ import { Avatar, Flex, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Chat } from "../context/ChatState";
 import { socket } from "../socket";
+import NoChatText from "./NoChatText";
 
 const ShowGroups = () => {
   const navigate = useNavigate();
@@ -39,6 +40,9 @@ const ShowGroups = () => {
       {/* Chat Icon Drawer */}
       <FindUserDrawer />
       {/* User */}
+      {groups && groups.length === 0 && (
+        <NoChatText message={"Start making groups now!"} />
+      )}
       {groups &&
         groups.map((item) => (
           <Flex

@@ -4,6 +4,7 @@ import { Avatar, Flex, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Chat } from "../context/ChatState";
 import { socket } from "../socket";
+import NoChatText from "./NoChatText";
 
 const ShowMessages = () => {
   const { chats, getChats, user } = useContext(Chat);
@@ -37,7 +38,9 @@ const ShowMessages = () => {
       {/* Chat Icon Drawer */}
       <FindUserDrawer />
       {/* User */}
-
+      {chats && chats.length === 0 && (
+        <NoChatText message={"Start a conversation now!"} />
+      )}
       {chats &&
         chats.map((item) => (
           <Flex

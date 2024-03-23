@@ -6,10 +6,10 @@ export const Chat = createContext();
 const ChatState = (props) => {
   const toast = useToast();
   const [tabSelector, setTabSelector] = useState(0);
-  const [chats, setChats] = useState();
+  const [chats, setChats] = useState([]);
   const [user, setUser] = useState();
   const [userForGroup, setUserForGroup] = useState();
-  const [groups, setGroups] = useState();
+  const [groups, setGroups] = useState([]);
   const [userProfile, setUserProfile] = useState();
   const [messages, setMessages] = useState();
 
@@ -22,11 +22,13 @@ const ChatState = (props) => {
         console.log(
           `Something went wrong while fetching chats ${res.data.message}`
         );
+        setChats([]);
       } else {
         setChats(res.data.chats);
       }
     } catch (error) {
       console.log("Something went wrong");
+      setChats([]);
     }
   };
   const getGroups = async () => {
@@ -36,11 +38,13 @@ const ChatState = (props) => {
       );
       if (!res.data.success) {
         console.log(`Something went wrong while getting groups`);
+        setGroups([]);
       } else {
         setGroups(res.data.groups);
       }
     } catch (error) {
       console.log(`Something went wrong ${error}`);
+      setGroups([]);
     }
   };
   const getUser = async () => {
