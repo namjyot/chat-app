@@ -72,7 +72,7 @@ const GroupChat = () => {
         const users = JSON.parse(sessionStorage.getItem("group")).users.map(
           (item) => item._id
         );
-        socket.emit("send-message", res.data.message, users);
+        socket.emit("send-message", res.data.message.chat, users);
         setMessage("");
         setLoading(false);
       }

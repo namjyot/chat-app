@@ -75,7 +75,7 @@ const Chat = () => {
         setLoading(false);
       } else {
         setMessages([...messages, res.data.message]);
-        socket.emit("send-message", res.data.message, [
+        socket.emit("send-message", res.data.message.chat, [
           JSON.parse(sessionStorage.getItem("chat")).users[0]._id,
         ]);
         setMessage("");
