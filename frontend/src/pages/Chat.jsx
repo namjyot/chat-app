@@ -54,7 +54,9 @@ const Chat = () => {
   }, [messages]);
 
   useEffect(() => {
-    fetchMessages();
+    socket.on("receive-message", (msg) => {
+      fetchMessages();
+    });
   }, [socket]);
 
   const handleSubmitMessage = async (e) => {
