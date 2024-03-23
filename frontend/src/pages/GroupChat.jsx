@@ -66,6 +66,7 @@ const GroupChat = () => {
       );
       if (!res.data.success) {
         console.log("Something went wrong while sending message");
+        setLoading(false);
       } else {
         setMessages((prevArr) => [...prevArr, res.data.message]);
         const users = JSON.parse(sessionStorage.getItem("group")).users.map(

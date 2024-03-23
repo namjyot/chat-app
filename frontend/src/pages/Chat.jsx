@@ -72,6 +72,7 @@ const Chat = () => {
       );
       if (!res.data.success) {
         console.log("Something went wrong while sending message");
+        setLoading(false);
       } else {
         setMessages([...messages, res.data.message]);
         socket.emit("send-message", res.data.message, [
