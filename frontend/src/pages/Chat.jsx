@@ -52,8 +52,8 @@ const Chat = () => {
   }, [messages]);
 
   useEffect(() => {
-    socket.on("receive-message", (message) => {
-      fetchMessages();
+    socket.on("receive-message", (msg) => {
+      setMessages((prevArr) => [...prevArr, msg]);
     });
   }, [socket]);
 
@@ -70,12 +70,10 @@ const Chat = () => {
       if (!res.data.success) {
         console.log("Something went wrong while sending message");
       } else {
-        socket.emit(
-          "send-message",
-          res.data.message.content,
-          res.data.message.chat,
-          [JSON.parse(sessionStorage.getItem("chat")).users[0]._id]
-        );
+        setMessages([...messages, res.data.message]);
+        socket.emit("send-message", res.data.message, [
+          JSON.parse(sessionStorage.getItem("chat")).users[0]._id,
+        ]);
         setMessage("");
       }
     } catch (error) {
@@ -115,7 +113,7 @@ const Chat = () => {
             avatar={JSON.parse(sessionStorage.getItem("chat")).users[0].avatar}
           />
         </Flex>
-       {!messages ? (
+        {!messages ? (
           <Loader />
         ) : (
           <Box h={"82%"} overflowY={"scroll"} css={{ transition: ".2s" }}>

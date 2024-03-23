@@ -4,6 +4,7 @@ import {
   fetchMessages,
   getChat,
   sendMessage,
+  sendGroupMessage,
   createGroup,
   getGroups,
   fetchGroupMessages,
@@ -18,6 +19,8 @@ router.post("/createChat", authentication, createChat);
 router.get("/getChat", authentication, getChat);
 
 router.post("/sendMessage", authentication, sendMessage);
+
+router.post("/sendGroupMessage", authentication, sendGroupMessage);
 
 router.post("/fetchMessages", authentication, fetchMessages);
 

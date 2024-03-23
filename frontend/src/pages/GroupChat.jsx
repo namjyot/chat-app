@@ -18,7 +18,6 @@ import GroupInfoDrawer from "../components/GroupInfoDrawer";
 import { Chat } from "../context/ChatState";
 import Loader from "../components/Loader";
 
-
 const GroupChat = () => {
   const [message, setMessage] = useState("");
   const { messages, setMessages } = useContext(Chat);
@@ -55,8 +54,8 @@ const GroupChat = () => {
   }, [messages]);
 
   useEffect(() => {
-    socket.on("receive-message", (message) => {
-      fetchMessages();
+    socket.on("receive-message", (msg) => {
+      setMessages((prevArr) => [...prevArr, msg]);
     });
   }, [socket]);
 
@@ -64,7 +63,7 @@ const GroupChat = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/chat/sendMessage`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chat/sendGroupMessage`,
         {
           chatId: JSON.parse(sessionStorage.getItem("group"))._id,
           message: message,
@@ -73,15 +72,11 @@ const GroupChat = () => {
       if (!res.data.success) {
         console.log("Something went wrong while sending message");
       } else {
+        setMessages((prevArr) => [...prevArr, res.data.message]);
         const users = JSON.parse(sessionStorage.getItem("group")).users.map(
           (item) => item._id
         );
-        socket.emit(
-          "send-message",
-          res.data.message.content,
-          res.data.message.chat,
-          users
-        );
+        socket.emit("send-message", res.data.message, users);
         setMessage("");
       }
     } catch (error) {

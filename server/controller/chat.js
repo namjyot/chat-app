@@ -90,11 +90,44 @@ export const sendMessage = async (req, res) => {
         message: `Something went wrong while sending message`,
       });
     } else {
-      const lastMessageUpdate = await Chat.findByIdAndUpdate(chatId, {
+      const lastMessageUpdate = Chat.findByIdAndUpdate(chatId, {
         lastMessage: message,
       });
 
       res.json({ success: true, message: result });
+    }
+  } catch (error) {
+    res.json({ success: false, message: `Something went wrong ${error}` });
+  }
+};
+
+export const sendGroupMessage = async (req, res) => {
+  try {
+    const selfId = req.user._id;
+    const { chatId, message } = req.body;
+    const result = await Message.create({
+      sender: selfId,
+      content: message,
+      chat: chatId,
+    });
+    if (!result) {
+      res.json({
+        success: false,
+        message: `Something went wrong while sending message`,
+      });
+    } else {
+      const lastMessageUpdate = Chat.findByIdAndUpdate(chatId, {
+        lastMessage: message,
+      });
+      const msg = await result.populate({
+        path: "sender",
+        select: "username email about avatar",
+      });
+
+      res.json({
+        success: true,
+        message: msg,
+      });
     }
   } catch (error) {
     res.json({ success: false, message: `Something went wrong ${error}` });

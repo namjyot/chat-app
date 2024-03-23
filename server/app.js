@@ -42,8 +42,8 @@ io.on("connection", (socket) => {
   socket.on("leave-room", (roomId) => {
     socket.leave(roomId);
   });
-  socket.on("send-message", (message, roomId, userId) => {
-    io.to(roomId).emit("receive-message", message);
+  socket.on("send-message", (message, userId) => {
+    socket.broadcast.to(message.chat).emit("receive-message", message);
     userId.map((id) => {
       io.to(id).emit("fetch-data");
     });
