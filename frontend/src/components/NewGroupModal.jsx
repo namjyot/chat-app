@@ -106,7 +106,7 @@ const NewGroupModal = () => {
     const prevElement = document.getElementById(groupImage);
     setGroupImage(item);
     prevElement.style.border = "none";
-    currentElement.style.border = "3px solid red";
+    currentElement.style.border = "2px solid red";
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();

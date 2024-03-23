@@ -1,13 +1,5 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, Input, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import SentMessage from "../components/SentMessage";
 import { Link } from "react-router-dom";
@@ -17,10 +9,12 @@ import { socket } from "../socket";
 import GroupInfoDrawer from "../components/GroupInfoDrawer";
 import { Chat } from "../context/ChatState";
 import Loader from "../components/Loader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const GroupChat = () => {
   const [message, setMessage] = useState("");
   const { messages, setMessages } = useContext(Chat);
+  const [loading, setLoading] = useState(false);
 
   const scrollToBottom = () => {
     const scrollTarget = document.getElementById("scroll-focus");
@@ -61,6 +55,7 @@ const GroupChat = () => {
 
   const handleSubmitMessage = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/chat/sendGroupMessage`,
@@ -78,9 +73,11 @@ const GroupChat = () => {
         );
         socket.emit("send-message", res.data.message, users);
         setMessage("");
+        setLoading(false);
       }
     } catch (error) {
       console.log(`Something went wrong ${error}`);
+      setLoading(false);
     }
     scrollToBottom();
   };
@@ -165,6 +162,8 @@ const GroupChat = () => {
             w={"15%"}
             colorScheme="messenger"
             onClick={handleSubmitMessage}
+            isLoading={loading}
+            spinner={<BeatLoader size={5} color="white" />}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -5,7 +5,6 @@ import {
   Tabs,
   TabPanel,
   Flex,
-  Text,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Register from "../components/Register";
@@ -21,7 +20,7 @@ const Authentication = () => {
         `${process.env.REACT_APP_SERVER_URL}/api/user/authUser`
       );
       if (res.data.success) {
-        setTimeout;
+        navigate("/home");
       }
     };
     setTimeout(() => {

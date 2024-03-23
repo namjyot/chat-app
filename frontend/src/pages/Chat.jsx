@@ -9,6 +9,7 @@ import { Chat as chat } from "../context/ChatState";
 import axios from "axios";
 import { socket } from "../socket";
 import Loader from "../components/Loader";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Chat = () => {
   const [messages, setMessages] = useState();
   const [message, setMessage] = useState("");
   const [chatId, setChatId] = useState();
+  const [loading, setLoading] = useState(false);
 
   const scrollToBottom = () => {
     const scrollTarget = document.getElementById("scroll-focus");
@@ -59,6 +61,7 @@ const Chat = () => {
 
   const handleSubmitMessage = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/chat/sendMessage`,
@@ -75,9 +78,11 @@ const Chat = () => {
           JSON.parse(sessionStorage.getItem("chat")).users[0]._id,
         ]);
         setMessage("");
+        setLoading(false);
       }
     } catch (error) {
       console.log(`Something went wrong ${error}`);
+      setLoading(false);
     }
     scrollToBottom();
   };
@@ -162,6 +167,8 @@ const Chat = () => {
             w={"15%"}
             colorScheme="messenger"
             onClick={handleSubmitMessage}
+            isLoading={loading}
+            spinner={<BeatLoader size={5} color="white" />}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
