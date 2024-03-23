@@ -55,6 +55,10 @@ io.on("connection", (socket) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.json({ success: true, message: "Everything's working fine" });
+});
+
 app.use("/api/user", userRoutes);
 
 app.use("/api/chat", chatRoutes);
