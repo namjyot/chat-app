@@ -152,6 +152,7 @@ const Chat = () => {
           <form style={{ width: "75%" }} onSubmit={handleSubmitMessage}>
             <FormControl>
               <Input
+                isDisabled={loading}
                 type="text"
                 value={message}
                 onChange={(e) => {
