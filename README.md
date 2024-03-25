@@ -11,11 +11,11 @@ Made with love by namjyot ❤️❤️
 
 
 
-## Author
+## Tech Stack
 
-- [@namjyot](https://www.github.com/namjyot)
+**Client:** React, Chakra UI
 
-
+**Server:** Node, Express, Socket.io
 ## Run Locally
 
 Clone the project
@@ -45,4 +45,9 @@ Start the server
 ```
 
 Now Setup your environment variables in config.env that includes: MongoDB Connection String, PORT, Jwt Secret Key, Cloudinary Api Secret
+
+
+## Author
+
+- [@namjyot](https://www.github.com/namjyot)
 
