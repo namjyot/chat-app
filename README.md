@@ -5,7 +5,7 @@ This is a chat application build using MERN and socket.io to chat with anyone in
 
 You can make groups and chat with multiple people at the same time
 
-Made with love by namjyot ❤️❤️
+Made by namjyot ❤️❤️
 
 
 
