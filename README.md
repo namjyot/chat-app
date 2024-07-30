@@ -1,9 +1,13 @@
 
 # Chat Application
 
-This is a chat application build using MERN and socket.io to chat with anyone in real time.
+This is a chat application built using MERN (MongoDB, Express, React, Node.js) and socket.io
 
-You can make groups and chat with multiple people at the same time
+The main purpose of this application is that it allows a person to chat with another person in real time.
+
+I made this as a major project for my Bachelor's degree in final year.
+
+You can also make groups and chat with multiple people at the same time.
 
 Made by namjyot ❤️❤️
 
