@@ -17,9 +17,9 @@ Made by namjyot ❤️❤️
 
 ## Tech Stack
 
-**Client:** React, Chakra UI
+**For Client Side:** React, Chakra UI
 
-**Server:** Node, Express, Socket.io
+**For Server Side:** Node, Express, Socket.io
 ## Run Locally
 
 Clone the project
